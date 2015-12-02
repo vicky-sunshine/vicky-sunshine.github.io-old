@@ -397,37 +397,18 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <p>以 kiwi course 為例</p>
+          <p>以 kiwi course 為例</p>
 <h2 id="First_time_collaborate">First time collaborate</h2><ol>
 <li>fork kiwi to your own repo from</li>
 <li>clone kiwi to local</li>
 <li>let your local repo link to upstream (i.e. organization repo, kiwi)</li>
 </ol>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add upstream git<span class="annotation">@github</span>.<span class="string">com:</span>Kiwi-Learn/kiwi-scraper.git</span><br></pre></td></tr></table></figure>
-<p>​</p>
-<h2 id="Developing_new_feature">Developing new feature</h2><p>every time, you want to add new feature at local, open and checkout the branch to develop,</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -<span class="tag">b</span> new-feature</span><br></pre></td></tr></table></figure>
-<p>then you can start programming under the new-feature branch</p>
-<h2 id="Finish_Developing">Finish Developing</h2><p>when feature is done, commit first<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="operator"><span class="keyword">commit</span> -<span class="keyword">m</span> <span class="string">"blah blah..."</span></span></span><br></pre></td></tr></table></figure></p>
-<p>create/push to your own remote branch<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">push</span> origin <span class="keyword">new</span>-feature</span><br></pre></td></tr></table></figure></p>
-<p>and then you can give kiwi a pull request after kiwi</p>
-<h2 id="Sync_your_own_repo">Sync your own repo</h2><p>If the project owner agrees to merge new feature, you can,</p>
-<p>1.sync your own repo master</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> fetch upstream</span><br><span class="line">git merge upstream/<span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> push origin <span class="literal">master</span></span><br></pre></td></tr></table></figure>
-<p>2.remove local and remote branches you just used (notice you can’t at the branch you want to delete)</p>
-<ul>
-<li><p>delete local branch</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d <span class="keyword">new</span>-feature</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>delete remote branch</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">push</span> origin --<span class="keyword">delete</span> <span class="keyword">new</span>-feature</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-            
-          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/12/02/github-coop-workflow/#more" rel="contents">
+              閱讀全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
