@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="github," />
+  <meta name="keywords" content="ruby,soa," />
 
 
 
@@ -51,34 +51,16 @@
 
 
 
-<meta name="description" content="以 kiwi course 為例
-First time collaborate
-fork kiwi to your own repo from
-clone kiwi to local
-let your local repo link to upstream (i.e. organization repo, kiwi)
-
-1git remote add upstream git@github.com">
+<meta name="description" content="一些自己練習做scraper、unit test和連上Travis-CI的筆記">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github Coop Workflow">
-<meta property="og:url" content="http://vicky-sunshine.github.io/2015/12/02/github-coop-workflow/index.html">
+<meta property="og:title" content="scrape and test">
+<meta property="og:url" content="http://vicky-sunshine.github.io/2016/01/01/scrape-and-test/index.html">
 <meta property="og:site_name" content="Little Sunshine">
-<meta property="og:description" content="以 kiwi course 為例
-First time collaborate
-fork kiwi to your own repo from
-clone kiwi to local
-let your local repo link to upstream (i.e. organization repo, kiwi)
-
-1git remote add upstream git@github.com">
-<meta property="og:updated_time" content="2015-12-02T07:41:24.000Z">
+<meta property="og:description" content="一些自己練習做scraper、unit test和連上Travis-CI的筆記">
+<meta property="og:updated_time" content="2016-01-01T14:11:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Github Coop Workflow">
-<meta name="twitter:description" content="以 kiwi course 為例
-First time collaborate
-fork kiwi to your own repo from
-clone kiwi to local
-let your local repo link to upstream (i.e. organization repo, kiwi)
-
-1git remote add upstream git@github.com">
+<meta name="twitter:title" content="scrape and test">
+<meta name="twitter:description" content="一些自己練習做scraper、unit test和連上Travis-CI的筆記">
 
 
 
@@ -90,7 +72,7 @@ let your local repo link to upstream (i.e. organization repo, kiwi)
   };
 </script>
 
-  <title> Github Coop Workflow | Little Sunshine </title>
+  <title> scrape and test | Little Sunshine </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
@@ -239,7 +221,7 @@ let your local repo link to upstream (i.e. organization repo, kiwi)
             
             
               
-                Github Coop Workflow
+                scrape and test
               
             
           </h1>
@@ -248,8 +230,8 @@ let your local repo link to upstream (i.e. organization repo, kiwi)
         <div class="post-meta">
           <span class="post-time">
             發表於
-            <time itemprop="dateCreated" datetime="2015-12-02T02:15:21+08:00" content="2015-12-02">
-              2015-12-02
+            <time itemprop="dateCreated" datetime="2016-01-01T21:20:19+08:00" content="2016-01-01">
+              2016-01-01
             </time>
           </span>
 
@@ -274,8 +256,8 @@ let your local repo link to upstream (i.e. organization repo, kiwi)
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/02/github-coop-workflow/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/02/github-coop-workflow/" itemprop="commentsCount"></span>
+              <a href="/2016/01/01/scrape-and-test/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/01/scrape-and-test/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -294,32 +276,26 @@ let your local repo link to upstream (i.e. organization repo, kiwi)
       
 
       
-        <span itemprop="articleBody"><p>以 kiwi course 為例</p>
-<h2 id="First_time_collaborate">First time collaborate</h2><ol>
-<li>fork kiwi to your own repo from</li>
-<li>clone kiwi to local</li>
-<li>let your local repo link to upstream (i.e. organization repo, kiwi)</li>
-</ol>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add upstream git<span class="annotation">@github</span>.<span class="string">com:</span>Kiwi-Learn/kiwi-scraper.git</span><br></pre></td></tr></table></figure>
+        <span itemprop="articleBody"><p>一些自己練習做scraper、unit test和連上Travis-CI的筆記</p>
 <a id="more"></a>
-<h2 id="Developing_new_feature">Developing new feature</h2><p>every time, you want to add new feature at local, open and checkout the branch to develop,</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -<span class="tag">b</span> new-feature</span><br></pre></td></tr></table></figure>
-<p>then you can start programming under the new-feature branch</p>
-<h2 id="Finish_Developing">Finish Developing</h2><p>when feature is done, commit first<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="operator"><span class="keyword">commit</span> -<span class="keyword">m</span> <span class="string">"blah blah..."</span></span></span><br></pre></td></tr></table></figure></p>
-<p>create/push to your own remote branch<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">push</span> origin <span class="keyword">new</span>-feature</span><br></pre></td></tr></table></figure></p>
-<p>and then you can give kiwi a pull request after kiwi</p>
-<h2 id="Sync_your_own_repo">Sync your own repo</h2><p>If the project owner agrees to merge new feature, you can,</p>
-<p>1.sync your own repo master</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> fetch upstream</span><br><span class="line">git merge upstream/<span class="keyword">master</span></span><br><span class="line"><span class="title">git</span> push origin <span class="literal">master</span></span><br></pre></td></tr></table></figure>
-<p>2.remove local and remote branches you just used (notice you can’t at the branch you want to delete)</p>
-<ul>
-<li><p>delete local branch</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d <span class="keyword">new</span>-feature</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>delete remote branch</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">push</span> origin --<span class="keyword">delete</span> <span class="keyword">new</span>-feature</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<h1 id="Scrape">Scrape</h1><h3 id="oga">oga</h3><p>Use oga gem to parse HTML/XML to tree structure<br><a href="http://code.yorickpeterse.com/oga/latest/" target="_blank" rel="external">http://code.yorickpeterse.com/oga/latest/</a></p>
+<h3 id="XPath">XPath</h3><p>Use XPath expression to find elements and query within results<br><a href="http://ejohn.org/blog/xpath-css-selectors/" target="_blank" rel="external">http://ejohn.org/blog/xpath-css-selectors/</a><br><a href="http://www.w3schools.com/xsl/xpath_intro.asp" target="_blank" rel="external">http://www.w3schools.com/xsl/xpath_intro.asp</a></p>
+<h1 id="Test">Test</h1><h3 id="minitest">minitest</h3><p><a href="http://ruby-doc.org/stdlib-2.0.0/libdoc/minitest/rdoc/MiniTest.html" target="_blank" rel="external">http://ruby-doc.org/stdlib-2.0.0/libdoc/minitest/rdoc/MiniTest.html</a><br><a href="http://blog.arvidandersson.se/2012/03/28/minimalicous-testing-in-ruby-1-9" target="_blank" rel="external">http://blog.arvidandersson.se/2012/03/28/minimalicous-testing-in-ruby-1-9</a></p>
+<p>後來寫的時候都直接看這篇cheat sheet比較快<br><a href="http://danwin.com/2013/03/ruby-minitest-cheat-sheet/" target="_blank" rel="external">http://danwin.com/2013/03/ruby-minitest-cheat-sheet/</a></p>
+<p>以下這篇是老師的Memo<br><a href="https://github.com/ISS-SOA/class-SOA-repo/wiki/resource-ruby-testing" target="_blank" rel="external">https://github.com/ISS-SOA/class-SOA-repo/wiki/resource-ruby-testing</a></p>
+<p>做Regular Expression Matching時有用的小工具<br><a href="http://rubular.com/" target="_blank" rel="external">http://rubular.com/</a></p>
+<h3 id="Travis_CI">Travis CI</h3><p><a href="https://docs.travis-ci.com/user/languages/ruby/" target="_blank" rel="external">https://docs.travis-ci.com/user/languages/ruby/</a></p>
+<h3 id="VCR">VCR</h3><p>其實一般這種爬網站的應用在測試的時候，通常都會搭配Web Playback Stubbing，就是第一次發request會真的跟網站要資料，然後將網頁存下來，之後跑測試都會去讀那個暫存檔，減少跟實際網站連線的次數，老師教的是VCR，但是這次應用的時候有些問題。</p>
+<p>我爬的是中央氣象局的網站，網站有個天氣小幫手，他的資料不是一開始就load好，而是加了一句<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="undefined">去讀某個txt檔</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>所以變成我爬氣象局資料的時候，不能直接爬到那筆資料，要先爬到那條<code>&lt;script&gt;</code>裡txt檔的位址，再發一次request去要資料，所以我的scraper裡會有兩次http request，而vcr在發第二次request去讀txt檔的，有以下error</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>) <span class="constant">Error:</span></span><br><span class="line"><span class="constant">Daily </span>weather desc scrap<span class="comment">#test_0007_should return weather tips:</span></span><br><span class="line"><span class="constant">VCR:</span><span class="symbol">:Errors</span><span class="symbol">:</span><span class="symbol">:UnhandledHTTPRequestError</span><span class="symbol">:</span></span><br><span class="line"></span><br><span class="line">================================================================================</span><br><span class="line"><span class="constant">An HTTP </span>request has been made that <span class="constant">VCR </span>does <span class="keyword">not</span> know how to <span class="symbol">handle:</span></span><br><span class="line"><span class="constant">GET </span><span class="symbol">http:</span>/<span class="regexp">/www.cwb.gov.tw/</span><span class="regexp">/V7/forecast</span><span class="regexp">/taiwan/</span><span class="constant">Data/W50_10018.</span>txt</span><br></pre></td></tr></table></figure>
+<p>所以我先照他的document，把整個過程log出來<br>產生<code>debug.log</code>的方法<br><a href="https://relishapp.com/vcr/vcr/v/2-1-0/docs/configuration/debug-logging" target="_blank" rel="external">https://relishapp.com/vcr/vcr/v/2-1-0/docs/configuration/debug-logging</a></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">VCR</span>.configure <span class="keyword">do</span> |config|</span><br><span class="line">  config.cassette_library_dir = <span class="string">'spec/fixtures/vcr_cassettes'</span></span><br><span class="line">  config.hook_into <span class="symbol">:webmock</span></span><br><span class="line">  config.debug_logger = <span class="constant">File</span>.open(<span class="string">'debug.log'</span>, <span class="string">'w'</span>)</span><br><span class="line">  config.default_cassette_options = &#123;</span><br><span class="line">   <span class="symbol">:match_requests_on</span> =&gt; [<span class="symbol">:method</span>, <span class="symbol">:host</span>, <span class="symbol">:path</span>]</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>打開<code>debug.log</code>會看到所有資訊<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">Cassette</span>: 'weather'] <span class="type">Initialized</span> <span class="keyword">with</span> options: &#123;:record=&gt;:once, :match_requests_on=&gt;[:<span class="keyword">method</span>, :host, :path], :allow_unused_http_interactions=&gt;<span class="literal">true</span>, :serialize_with=&gt;:yaml, :persist_with=&gt;:file_system&#125;</span><br><span class="line">[webmock] <span class="type">Handling</span> request: [get http://www.cwb.gov.tw/<span class="type">V7</span>/forecast/taiwan//<span class="type">Hsinchu_City</span>.htm] (disabled: <span class="literal">false</span>)</span><br><span class="line">  [<span class="type">Cassette</span>: 'weather'] <span class="type">Initialized</span> <span class="type">HTTPInteractionList</span> <span class="keyword">with</span> request matchers [:<span class="keyword">method</span>, :host, :path] <span class="keyword">and</span> <span class="number">1</span> interaction(s): &#123; [get http://www.cwb.gov.tw/<span class="type">V7</span>/forecast/taiwan//<span class="type">Hsinchu_City</span>.htm] =&gt; [<span class="number">200</span> <span class="string">"&lt;!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.or"</span>] &#125;</span><br><span class="line">  [<span class="type">Cassette</span>: 'weather'] <span class="type">Checking</span> <span class="keyword">if</span> [get http://www.cwb.gov.tw/<span class="type">V7</span>/forecast/taiwan//<span class="type">Hsinchu_City</span>.htm] matches [get http://www.cwb.gov.tw/<span class="type">V7</span>/forecast/taiwan//<span class="type">Hsinchu_City</span>.htm] <span class="keyword">using</span> [:<span class="keyword">method</span>, :host, :path]</span><br><span class="line">    [<span class="type">Cassette</span>: 'weather'] <span class="keyword">method</span> (matched): current request [get http://www.cwb.gov.tw/<span class="type">V7</span>/forecast/taiwan//<span class="type">Hsinchu_City</span>.htm] vs [get http://www.cwb.gov.tw/<span class="type">V7</span>/forecast/taiwan//<span class="type">Hsinchu_City</span>.htm]</span><br><span class="line">    [<span class="type">Cassette</span>: 'weather'] host (matched): current request [get http://www.cwb.gov.tw/<span class="type">V7</span>/forecast/taiwan//<span class="type">Hsinchu_City</span>.htm] vs [get http://www.cwb.gov.tw/<span class="type">V7</span>/forecast/taiwan//<span class="type">Hsinchu_City</span>.htm]</span><br><span class="line">    [<span class="type">Cassette</span>: 'weather'] path (matched): current request [get http://www.cwb.gov.tw/<span class="type">V7</span>/forecast/taiwan//<span class="type">Hsinchu_City</span>.htm] vs [get http://www.cwb.gov.tw/<span class="type">V7</span>/forecast/taiwan//<span class="type">Hsinchu_City</span>.htm]</span><br><span class="line">  [<span class="type">Cassette</span>: 'weather'] <span class="type">Found</span> matching interaction <span class="keyword">for</span> [get http://www.cwb.gov.tw/<span class="type">V7</span>/forecast/taiwan//<span class="type">Hsinchu_City</span>.htm] at index <span class="number">0</span>: [<span class="number">200</span> <span class="string">"&lt;!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.or"</span>]</span><br><span class="line">[webmock] <span class="type">Identified</span> request <span class="keyword">type</span> (stubbed_by_vcr) <span class="keyword">for</span> [get http://www.cwb.gov.tw/<span class="type">V7</span>/forecast/taiwan//<span class="type">Hsinchu_City</span>.htm]</span><br><span class="line">[<span class="type">Cassette</span>: 'weather_tips'] <span class="type">Initialized</span> <span class="keyword">with</span> options: &#123;:record=&gt;:once, :match_requests_on=&gt;[:<span class="keyword">method</span>, :host, :path], :allow_unused_http_interactions=&gt;<span class="literal">true</span>, :serialize_with=&gt;:yaml, :persist_with=&gt;:file_system&#125;</span><br><span class="line">[webmock] <span class="type">Handling</span> request: [get http://www.cwb.gov.tw//<span class="type">V7</span>/forecast/taiwan/<span class="type">Data</span>/<span class="type">W50_10018</span>.txt] (disabled: <span class="literal">false</span>)</span><br><span class="line">[webmock] <span class="type">Identified</span> request <span class="keyword">type</span> (unhandled) <span class="keyword">for</span> [get http://www.cwb.gov.tw//<span class="type">V7</span>/forecast/taiwan/<span class="type">Data</span>/<span class="type">W50_10018</span>.txt]</span><br></pre></td></tr></table></figure></p>
+<p>錯在這句</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[webmock] <span class="constant">Identified</span> request <span class="keyword">type</span> (unhandled) <span class="keyword">for</span> [get <span class="symbol">http:</span>/<span class="regexp">/www.cwb.gov.tw/</span><span class="regexp">/V7/forecast</span><span class="regexp">/taiwan/</span><span class="constant">Data</span>/<span class="constant">W50_10018</span>.txt]</span><br></pre></td></tr></table></figure>
+<p>還是沒搞懂原因是在哪裡，所以就先把VCR的部分拿掉</p>
+<h3 id="附記">附記</h3><p>原本 <code>&lt;script&gt;</code> 在這個markdown檔案中沒有標記起來，所以預覽套件和產出的網誌在<code>&lt;script&gt;</code>的文字都會被吃掉，下次要注意</p>
 </span>
       
     </div>
@@ -328,7 +304,9 @@ let your local repo link to upstream (i.e. organization repo, kiwi)
       
         <div class="post-tags">
           
-            <a href="/tags/github/" rel="tag">#github</a>
+            <a href="/tags/ruby/" rel="tag">#ruby</a>
+          
+            <a href="/tags/soa/" rel="tag">#soa</a>
           
         </div>
       
@@ -337,13 +315,13 @@ let your local repo link to upstream (i.e. organization repo, kiwi)
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2015/12/24/2015-12-24-Christmas/" rel="next" title="Christmas">
+                <i class="fa fa-chevron-left"></i> Christmas
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/02/他的名字/" rel="prev" title="他的名字">
-                他的名字 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -471,7 +449,7 @@ let your local repo link to upstream (i.e. organization repo, kiwi)
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#First_time_collaborate"><span class="nav-number">1.</span> <span class="nav-text">First time collaborate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Developing_new_feature"><span class="nav-number">2.</span> <span class="nav-text">Developing new feature</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finish_Developing"><span class="nav-number">3.</span> <span class="nav-text">Finish Developing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sync_your_own_repo"><span class="nav-number">4.</span> <span class="nav-text">Sync your own repo</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Scrape"><span class="nav-number">1.</span> <span class="nav-text">Scrape</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#oga"><span class="nav-number">1.0.1.</span> <span class="nav-text">oga</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XPath"><span class="nav-number">1.0.2.</span> <span class="nav-text">XPath</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Test"><span class="nav-number">2.</span> <span class="nav-text">Test</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#minitest"><span class="nav-number">2.0.1.</span> <span class="nav-text">minitest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Travis_CI"><span class="nav-number">2.0.2.</span> <span class="nav-text">Travis CI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VCR"><span class="nav-number">2.0.3.</span> <span class="nav-text">VCR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附記"><span class="nav-number">2.0.4.</span> <span class="nav-text">附記</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -531,9 +509,9 @@ let your local repo link to upstream (i.e. organization repo, kiwi)
 
     <script type="text/javascript">
       var disqus_shortname = 'vicky-sunshine';
-      var disqus_identifier = '2015/12/02/github-coop-workflow/';
-      var disqus_title = 'Github Coop Workflow';
-      var disqus_url = 'http://vicky-sunshine.github.io/2015/12/02/github-coop-workflow/';
+      var disqus_identifier = '2016/01/01/scrape-and-test/';
+      var disqus_title = 'scrape and test';
+      var disqus_url = 'http://vicky-sunshine.github.io/2016/01/01/scrape-and-test/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
