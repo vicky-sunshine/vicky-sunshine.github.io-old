@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ruby,soa," />
 
 
 
@@ -51,16 +51,22 @@
 
 
 
-<meta name="description" content="你結束了與她的談話，將她離去的背影儲存在腦海哩，並給自己打了個分數：五十七分，起頭的太突兀，話題不夠熱烈，結束的太草率，不及格！還是會緊張，還不夠遊刃有餘，你用衣擺擦了擦手心的汗，拿起了筆記本記錄下她剛剛的細微表情，轉化成數據並換算成紫心藍心綠心的各種等級，離紅心還很遙遠，你用筆戳著臉頰這麼想。">
+<meta name="description" content="嘗試自己做gem，但是build完之後，會出現
+1LoadError: cannot load such file -- weatherscout&amp;#10;from /Users/Hsnl/.rvm/rubies/ruby-head/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:54:in `require&amp;#39;
+後來">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Game Walkthrough">
-<meta property="og:url" content="http://vicky-sunshine.github.io/2015/12/11/Game-Walkthrough/index.html">
+<meta property="og:title" content="gem note">
+<meta property="og:url" content="http://vicky-sunshine.github.io/2016/01/15/gem/index.html">
 <meta property="og:site_name" content="Little Sunshine">
-<meta property="og:description" content="你結束了與她的談話，將她離去的背影儲存在腦海哩，並給自己打了個分數：五十七分，起頭的太突兀，話題不夠熱烈，結束的太草率，不及格！還是會緊張，還不夠遊刃有餘，你用衣擺擦了擦手心的汗，拿起了筆記本記錄下她剛剛的細微表情，轉化成數據並換算成紫心藍心綠心的各種等級，離紅心還很遙遠，你用筆戳著臉頰這麼想。">
-<meta property="og:updated_time" content="2015-12-11T06:57:22.000Z">
+<meta property="og:description" content="嘗試自己做gem，但是build完之後，會出現
+1LoadError: cannot load such file -- weatherscout&amp;#10;from /Users/Hsnl/.rvm/rubies/ruby-head/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:54:in `require&amp;#39;
+後來">
+<meta property="og:updated_time" content="2016-01-14T17:53:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Game Walkthrough">
-<meta name="twitter:description" content="你結束了與她的談話，將她離去的背影儲存在腦海哩，並給自己打了個分數：五十七分，起頭的太突兀，話題不夠熱烈，結束的太草率，不及格！還是會緊張，還不夠遊刃有餘，你用衣擺擦了擦手心的汗，拿起了筆記本記錄下她剛剛的細微表情，轉化成數據並換算成紫心藍心綠心的各種等級，離紅心還很遙遠，你用筆戳著臉頰這麼想。">
+<meta name="twitter:title" content="gem note">
+<meta name="twitter:description" content="嘗試自己做gem，但是build完之後，會出現
+1LoadError: cannot load such file -- weatherscout&amp;#10;from /Users/Hsnl/.rvm/rubies/ruby-head/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:54:in `require&amp;#39;
+後來">
 
 
 
@@ -72,7 +78,7 @@
   };
 </script>
 
-  <title> Game Walkthrough | Little Sunshine </title>
+  <title> gem note | Little Sunshine </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
@@ -221,7 +227,7 @@
             
             
               
-                Game Walkthrough
+                gem note
               
             
           </h1>
@@ -230,8 +236,8 @@
         <div class="post-meta">
           <span class="post-time">
             發表於
-            <time itemprop="dateCreated" datetime="2015-12-11T14:37:01+08:00" content="2015-12-11">
-              2015-12-11
+            <time itemprop="dateCreated" datetime="2016-01-15T01:18:27+08:00" content="2016-01-15">
+              2016-01-15
             </time>
           </span>
 
@@ -240,8 +246,8 @@
               &nbsp; | &nbsp; 分類於
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/writing/" itemprop="url" rel="index">
-                    <span itemprop="name">writing</span>
+                  <a href="/categories/study/" itemprop="url" rel="index">
+                    <span itemprop="name">study</span>
                   </a>
                 </span>
 
@@ -256,8 +262,8 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/11/Game-Walkthrough/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/11/Game-Walkthrough/" itemprop="commentsCount"></span>
+              <a href="/2016/01/15/gem/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/15/gem/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -276,51 +282,46 @@
       
 
       
-        <span itemprop="articleBody"><p>你結束了與她的談話，將她離去的背影儲存在腦海哩，並給自己打了個分數：五十七分，起頭的太突兀，話題不夠熱烈，結束的太草率，不及格！還是會緊張，還不夠遊刃有餘，你用衣擺擦了擦手心的汗，拿起了筆記本記錄下她剛剛的細微表情，轉化成數據並換算成紫心藍心綠心的各種等級，離紅心還很遙遠，你用筆戳著臉頰這麼想。<br><a id="more"></a><br>而是什麼讓你開始並耽溺於這種你來我往的遊戲，整個世界彷彿是個巨大的程式所建構出來的複雜場景，每個人都是自己的主人翁走自己的主線劇情，支線和支線不斷往外無限延伸互相交叉纏繞，譜成一個緻密的人情網路想抽身卻也剪不斷理不清，端看你如何做決定。</p>
-<p>我打開了模擬器按下load鍵，想見那朝思暮想的人影，早上八點卡蓮將會坐在雜貨店前，我看了總是在她身邊打轉的蒼蠅力克一眼然後不理會，卡蓮還是一臉冷漠，可是胸前紫色的心已透露出對我有些好感，她開了包裝，意料之內驚喜又帶點含羞帶怯的跟我道聲謝謝，葡萄酒可是會加好感度五百，何況又有包裝再加一百。</p>
-<p>而一次又一次的事件與對話就是在做抉擇，就像你剛進入遊戲沒多久（你翻開了存檔紀錄），當你正在搬著重物走在路上的時候，突然下起了大雨，此時事件發生，有個女孩經過看你一身狼狽，於是問你要不要共撐一把傘？</p>
-<blockquote>
-<p>選項一：不用了！我自己可以處理。<br>選項二：干你屁事！<br>選項三：那就麻煩妳了，謝謝。</p>
-</blockquote>
-<p>那女孩伸出手的畫面與某個身影重疊，你望了她幾眼，也不想跟這場大雨過不去，於是你選了三，和她一路肩並肩走著，本來是尷尬的沉默，但是後來你發覺她會因為你講的冷笑話而笑的很開心，笑的時候手抖了厲害拿不穩雨傘，搖搖晃晃還不停戳到你的頭，結果你到達目的地時全身濕冷，但心似乎熱了起來。</p>
-<p>我想起還未熟悉牧場經營時，在鎮上不知所措的閑晃進雜貨店，是卡蓮，是她主動問我有沒有困難，並送我一包牧草種子。</p>
-<p>於是你開始日復一日的計算，一如用當初記錄卡蓮的出沒地點與時間，你不斷按下遊戲裡的save/load鍵不斷更新腦中的資訊，嘗試在各個時間到那路口看她會不會出現，計算要多久她才會從她家門口到上班地點，計算她幾點起床，幾點出門，幾點關燈睡覺，你知道她叫亭亭，你知道她騎車總是習慣帶個口罩，你掌握了她的行程，接下來就只是「巧遇」，有計畫的巧遇會引發更多的對話事件。</p>
-<p>這是你與選項之間的戰爭。</p>
-<p>你步步為營你計算仔細，她在早上七點五十五分前會走到那個樓梯，她週一的課表是化數體生英英數物，她習慣性的會在十二點六分的時候到福利社買午餐，喜歡吃沙茶燴飯加一瓶綠茶，你計算出她會在哪一天當值日生，計算她走路的速度，嘴角上揚的角度……</p>
-<blockquote>
-<p>Skip→　Skip→　Skip→</p>
-</blockquote>
-<p>已經玩了好多次、看了太多重複的劇情我開始感到厭煩。</p>
-<blockquote>
-<p>…<br>..<br>.<br>Skkkkkkkkkiiip 直接結局劇情</p>
-</blockquote>
-<p>於是你毫無反應的茫然看著她，甚至只看得到她的嘴一張一闔，你們之間彷彿是真空般寂然無聲，而當她對你不知道大吼了什麼之後，轉身用力的甩上了大門，在昏暗得只有一盞暖黃色小燈照著的客廳中徒留下你，而你不知道為什麼？她為什麼這麼生氣呢？為什麼要離開呢？</p>
-<p>然後你想起了你並不是一個人，你打開了遊戲，看著不知道這是第幾次和卡蓮結婚，你和卡蓮一臉幸福的走向紅色的地毯，卻覺得有些煩躁，所以你按了select……</p>
-<p>你突然發現遊戲不能重新開始。</p>
+        <span itemprop="articleBody"><p>嘗試自己做gem，但是build完之後，會出現</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadError: cannot load such file -- weatherscout&#10;from /Users/Hsnl/.rvm/rubies/ruby-head/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:54:in `require&#39;</span><br></pre></td></tr></table></figure>
+<p>後來發現是因為lib底下最上層的檔案沒有跟gem的名字一樣<br>下面 <code>tree</code> 中兩個粗體字就是應該要跟gem名稱一樣</p>
+<p>.<br>├── Gemfile<br>├── Gemfile.lock<br>├── LICENSE.txt<br>├── README.md<br>├── Rakefile<br>├── bin<br>│   └── <strong>weatherscout  &lt;==</strong><br>├── lib<br>│   ├── weatherdesc<br>│   │   ├── daily_weather.rb<br>│   │   └── version.rb<br>│   └── <strong>weatherscout.rb  &lt;==</strong><br>├── spec<br>│   └── weatherdesc_spec.rb<br>└── <strong>weatherscout.gemspec &lt;==</strong></p>
 <hr>
-<p>TRAGIC BOY<br><a href="http://www.youtube.com/watch?v=9qng835--K4" target="_blank" rel="external">http://www.youtube.com/watch?v=9qng835--K4</a></p>
+<p>未來想改善一下weatherscout model的部分<br>想加入weekly weather，而weekly和daily又有好多重複的部分，還沒決定這邊怎麼處理<br>但是應該都會放在同一個module裡面<br>這裡memo一下想用的寫法，將同個module的class放在不同檔案(dependency一向有點麻煩)<br><a href="http://stackoverflow.com/questions/12035057/breaking-ruby-module-across-several-files" target="_blank" rel="external">http://stackoverflow.com/questions/12035057/breaking-ruby-module-across-several-files</a></p>
+<hr>
+<p>另外version要怎麼update也另外記在這</p>
+<p>Semantic Versioning (semver.org): MAJOR.MINOR.PATCH <a href="http://semver.org" target="_blank" rel="external">http://semver.org</a><br>Increment the:</p>
+<ul>
+<li>MAJOR version when you make incompatible API changes,</li>
+<li>MINOR version when you add functionality in a backwards-compatible manner, and</li>
+<li>PATCH version when you make backwards-compatible bug fixes.</li>
+</ul>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/ruby/" rel="tag">#ruby</a>
+          
+            <a href="/tags/soa/" rel="tag">#soa</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/11/營養缺乏/" rel="next" title="營養缺乏">
-                <i class="fa fa-chevron-left"></i> 營養缺乏
+              <a href="/2016/01/14/2016-01-14-miscellaneous/" rel="next" title="miscellaneous">
+                <i class="fa fa-chevron-left"></i> miscellaneous
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/13/ocean/" rel="prev" title="海洋">
-                海洋 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -508,9 +509,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'vicky-sunshine';
-      var disqus_identifier = '2015/12/11/Game-Walkthrough/';
-      var disqus_title = 'Game Walkthrough';
-      var disqus_url = 'http://vicky-sunshine.github.io/2015/12/11/Game-Walkthrough/';
+      var disqus_identifier = '2016/01/15/gem/';
+      var disqus_title = 'gem note';
+      var disqus_url = 'http://vicky-sunshine.github.io/2016/01/15/gem/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
