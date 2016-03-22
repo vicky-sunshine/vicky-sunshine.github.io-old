@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="cryptography," />
 
 
 
@@ -51,22 +51,34 @@
 
 
 
-<meta name="description" content="「我正在忙著流失水分，可以幫我澆一下花嗎？」
+<meta name="description" content="Modular Arithmetic
+modular operator a mod b as the remainder when a is divided by n.
 
-「什麼花啊？」「我啊。」">
+Modulo 有以下性質
+
+$a+b \mod n \equiv (a\mod n) + (b \mod n) \mod n$
+$a \times b \mod n \equiv (a\mod n) * (b \mod n) \">
 <meta property="og:type" content="article">
-<meta property="og:title" content="花">
-<meta property="og:url" content="http://vicky-sunshine.github.io/2016/02/18/花/index.html">
+<meta property="og:title" content="Finite Field - Group, Ring and Field">
+<meta property="og:url" content="http://vicky-sunshine.github.io/2016/03/20/2016-03-20-finite-field-1/index.html">
 <meta property="og:site_name" content="Little Sunshine">
-<meta property="og:description" content="「我正在忙著流失水分，可以幫我澆一下花嗎？」
+<meta property="og:description" content="Modular Arithmetic
+modular operator a mod b as the remainder when a is divided by n.
 
-「什麼花啊？」「我啊。」">
-<meta property="og:updated_time" content="2016-02-17T17:02:13.000Z">
+Modulo 有以下性質
+
+$a+b \mod n \equiv (a\mod n) + (b \mod n) \mod n$
+$a \times b \mod n \equiv (a\mod n) * (b \mod n) \">
+<meta property="og:updated_time" content="2016-03-22T08:26:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="花">
-<meta name="twitter:description" content="「我正在忙著流失水分，可以幫我澆一下花嗎？」
+<meta name="twitter:title" content="Finite Field - Group, Ring and Field">
+<meta name="twitter:description" content="Modular Arithmetic
+modular operator a mod b as the remainder when a is divided by n.
 
-「什麼花啊？」「我啊。」">
+Modulo 有以下性質
+
+$a+b \mod n \equiv (a\mod n) + (b \mod n) \mod n$
+$a \times b \mod n \equiv (a\mod n) * (b \mod n) \">
 
 
 
@@ -78,7 +90,7 @@
   };
 </script>
 
-  <title> 花 | Little Sunshine </title>
+  <title> Finite Field - Group, Ring and Field | Little Sunshine </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
@@ -227,7 +239,7 @@
             
             
               
-                花
+                Finite Field - Group, Ring and Field
               
             
           </h1>
@@ -236,8 +248,8 @@
         <div class="post-meta">
           <span class="post-time">
             發表於
-            <time itemprop="dateCreated" datetime="2016-02-18T00:57:08+08:00" content="2016-02-18">
-              2016-02-18
+            <time itemprop="dateCreated" datetime="2016-03-20T10:33:59+08:00" content="2016-03-20">
+              2016-03-20
             </time>
           </span>
 
@@ -246,8 +258,8 @@
               &nbsp; | &nbsp; 分類於
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index">
-                    <span itemprop="name">life</span>
+                  <a href="/categories/study/" itemprop="url" rel="index">
+                    <span itemprop="name">study</span>
                   </a>
                 </span>
 
@@ -262,8 +274,8 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/02/18/花/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/02/18/花/" itemprop="commentsCount"></span>
+              <a href="/2016/03/20/2016-03-20-finite-field-1/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/20/2016-03-20-finite-field-1/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -282,30 +294,355 @@
       
 
       
-        <span itemprop="articleBody"><p>「我正在忙著流失水分，可以幫我澆一下花嗎？」</p>
+        <span itemprop="articleBody"><h1 id="Modular_Arithmetic">Modular Arithmetic</h1><blockquote>
+<p>modular operator <strong><em>a mod b</em></strong> as the remainder when a is divided by n.</p>
+</blockquote>
+<p>Modulo 有以下性質</p>
+<ol>
+<li>$a+b \mod n \equiv (a\mod n) + (b \mod n) \mod n$</li>
+<li>$a \times b \mod n \equiv (a\mod n) * (b \mod n) \mod n$</li>
+<li>If $(a+b) \equiv (a+c) \mod n $, then $b \equiv c \mod n$</li>
+<li>If $(a \times b) \equiv (a \times c) \mod n $, then $b \equiv c \mod n$ <strong>only if</strong> a is relatively prime to n</li>
+</ol>
 <hr>
-<p>「什麼花啊？」<br>「我啊。」</p>
+<h1 id="GCD_and_Euclid’s_Algorithm">GCD and Euclid’s Algorithm</h1><p>concept: GCD(a, b) = GCD(b, a mod b)<br>code:<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">A</span> = <span class="literal">a</span>,B = b</span><br><span class="line"><span class="keyword">while</span> B &gt; <span class="number">0</span></span><br><span class="line">	R = <span class="literal">A</span> mod B</span><br><span class="line">	<span class="literal">A</span> = B</span><br><span class="line">	B = R</span><br><span class="line"><span class="keyword">return</span> <span class="literal">A</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="Group">Group</h1><p>群是一個集合G，連同一個運算$\cdot $，它結合任何兩個元素a和b而形成另一個元素，記為$a \cdot  b$。<br>符號$\cdot $是一個具體的運算，比如加法和乘法<br>群$(G,\cdot )$必須滿足群公理的四個要求</p>
+<p>以$(G, \ast )$為例子</p>
+<ol>
+<li>Closure（封閉性）： $a, b \in G \Rightarrow  a\ast b \in G$</li>
+<li>Associativity（結合性)：$(a\ast b)\ast c = a\ast (b\ast c)$</li>
+<li>Identity（單位元素)：$\exists e$   <em>s.t.</em> $e\ast a =a \ast e = a$</li>
+<li>Inverse（反元素）：$\forall a \exists a^{-1}$   <em>s.t.</em> $a\ast a^{-1} =a^{-1} \ast a = e$ , <em>where $e$ is <strong>Identity</strong></em></li>
+</ol>
+<p>如果Commutativity（交換律）a<em>b = b</em>a  也成立的話，則可以稱之為 <strong>abelian group</strong>。</p>
+<blockquote>
+<p><strong>Example 1</strong><br>$G = {0,1,2,3}$<br>operator: $+$(mod 4)<br>Is $(G,+)$ a group?<br><strong>solution</strong><br>| + | 0 | 1 | 2 | 3 |<br>|—|—|—|—|—|<br>| 0 | 0 | 1 | 2 | 3 |<br>| 1 | 1 | 2 | 3 | 0 |<br>| 2 | 2 | 3 | 0 | 1 |<br>| 3 | 3 | 0 | 1 | 2 |<br>逐一檢查四個性質</p>
+<ol>
+<li>Closure（封閉性）: Yes</li>
+<li>Associativity（結合性）：Yes</li>
+<li>Identity（單位元素）： 0是單位元素</li>
+<li>Inverse（反元素）：Yes<br>$(G,+)$  是 abelian group</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Example 2</strong><br>$G = {0,1,2,3}$<br>operator: $\ast$(mod 4)<br>Is $(G,\ast)$ a group?<br><strong>solution</strong><br>| $\ast$ | 0 | 1 | 2 | 3 |<br>|—|—|—|—|—|<br>| 0 | 0 | 0 | 0 | 0 |<br>| 1 | 0 | 1 | 2 | 3 |<br>| 2 | 0 | 2 | 0 | 2 |<br>| 3 | 0 | 3 | 2 | 1 |<br>逐一檢查四個性質</p>
+<ol>
+<li>Closure（封閉性）: Yes</li>
+<li>Associativity（結合性）：Yes</li>
+<li>Identity（單位元素）： 1是單位元素</li>
+<li>Inverse（反元素）：2沒有反元素<br>$(G,\ast)$ 不是 abelian group</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Example 3</strong><br>$G = {1,2,3,4}$<br>operator: $\ast$(mod 5)<br>Is $(G,\ast)$ a group?<br><strong>solution</strong><br>| $\ast$ | 1 | 2 | 3 | 4 |<br>|—|—|—|—|—|<br>| 1 | 1 | 2 | 3 | 4 |<br>| 2 | 2 | 4 | 1 | 3 |<br>| 3 | 3 | 1 | 4 | 2 |<br>| 4 | 4 | 3 | 2 | 1 |<br>逐一檢查四個性質</p>
+<ol>
+<li>Closure（封閉性）: Yes</li>
+<li>Associativity（結合性）：Yes</li>
+<li>Identity（單位元素）： 1是單位元素</li>
+<li>Inverse（反元素）：都有<br>$(G,\ast)$ 是 abelian group</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Example 4</strong><br>$G = {1,2,3}$<br>operator: $\ast$(mod 5)<br>Is $(G,\ast)$ a group?<br><strong>solution</strong><br>| $\ast$ | 1 | 2 | 3 |<br>|—|—|—|—|<br>| 1 | 1 | 2 | 3 |<br>| 2 | 2 | 4 | 1 |<br>| 3 | 3 | 1 | 4 |<br>逐一檢查四個性質</p>
+<ol>
+<li>Closure（封閉性）：No，4 不在 G 裡<br>$(G,\ast)$ 不是 abelian group</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Example 5</strong><br>$G = {1,2,3}$<br>operator: $\ast$(mod 4)<br>Is $(G,\ast)$ a group?<br><strong>solution</strong><br>| $\ast$ | 1 | 2 | 3 |<br>|—|—|—|—|<br>| 1 | 1 | 2 | 3 |<br>| 2 | 2 | 0| 1 |<br>| 3 | 3 | 2 | 1 |<br>逐一檢查四個性質</p>
+<ol>
+<li>Closure（封閉性）：No，0 不在裡面<br>$(G,\ast)$ 不是 abelian group</li>
+</ol>
+</blockquote>
+<hr>
+<h1 id="Ring">Ring</h1><p>A set R 和兩個運算 $+ ,\ast$，符合下列條件則形成一個環 Ring</p>
+<ol>
+<li>$(R, +)$ is abelian group</li>
+<li>$(R,\ast)$ is semi group (只須符合 Closure 和 Assoiciativity)</li>
+</ol>
+<p>如果 $\ast$ 也符合 commutative，則可以稱為 <strong>commutative Ring</strong><br>如果 multiplication identity 也存在，就稱為 <strong>Ring with 1</strong></p>
+<blockquote>
+<p><strong>Example 1</strong><br>Is ${0,1,2,3}:(+,\ast)$ (mod 4)   是不是 Ring?<br><strong>solution</strong><br>| + | 0 | 1 | 2 | 3 |<br>|—|—|—|—|—|<br>| 0 | 0 | 1 | 2 | 3 |<br>| 1 | 1 | 2 | 3 | 0 |<br>| 2 | 2 | 3 | 0 | 1 |<br>| 3 | 3 | 0 | 1 | 2 |</p>
+<table>
+<thead>
+<tr>
+<th>$\ast$</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>逐一檢查四個性質</p>
+<ol>
+<li>$({0,1,2,3},+) \Rightarrow$ abelian group</li>
+<li>$({0,1,2,3},\ast) \Rightarrow$  semi group<br>$\Rightarrow$ Ring</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Example 2</strong><br>Is $\mathbb{Z}_6:(+,\ast)$ (mod 6)   是不是 Ring?<br><strong>solution</strong><br>| + | 0 | 1 | 2 | 3 | 4 | 5 |<br>|—|—|—|—|—|—|—|<br>| 0 | 0 | 1 | 2 | 3 | 4 | 5 |<br>| 1 | 1 | 2 | 3 | 4 | 5 | 0 |<br>| 2 | 2 | 3 | 4 | 5 | 0 | 1 |<br>| 3 | 3 | 4 | 5 | 0 | 1 | 2 |<br>| 4 | 4 | 5 | 0 | 1 | 2 | 3 |<br>| 5 | 5 | 0 | 1 | 2 | 3 | 4 |<br>$(\mathbb{Z}_6,+)$ is an abeliab group ——(1)</p>
+<table>
+<thead>
+<tr>
+<th>$\ast$</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>4</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>4</td>
+<td>2</td>
+<td>0</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>$(\mathbb{Z}_6,+)$ is a semi group ——(2)<br>$\because$ 3,4沒有反元素</p>
+<p> (1)(2)$\Rightarrow (\mathbb{Z}_6,+,\ast)$ is a Ring</p>
+</blockquote>
+<hr>
+<h1 id="Field">Field</h1><p>A Ring $(R, +, \ast)$ satisfied</p>
+<ol>
+<li>$(R, +)$ is an abelian group</li>
+<li>$(R |{0},\ast)$ is an abelian group</li>
+</ol>
+<p>In short, a Field is a commutative division ring.</p>
+<blockquote>
+<p><strong>Example 1</strong><br>Is ${0,1,2,3}:(+,\ast)$ (mod 4)   是不是 Field?<br><strong>solution</strong><br>| + | 0 | 1 | 2 | 3 |<br>|—|—|—|—|—|<br>| 0 | 0 | 1 | 2 | 3 |<br>| 1 | 1 | 2 | 3 | 0 |<br>| 2 | 2 | 3 | 0 | 1 |<br>| 3 | 3 | 0 | 1 | 2 |</p>
+<table>
+<thead>
+<tr>
+<th>$\ast$</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>逐一檢查四個性質</p>
+<ol>
+<li>$({0,1,2,3},+) \Rightarrow$ abelian group</li>
+<li>$({0,1,2,3},\ast)$ 因為2 找不到反元素<br>不是 abelian group<br>$\Rightarrow$ ${0,1,2,3}:(+,\ast)$ (mod 4) 不是 Field (是Ring)</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Example 2</strong><br>Is ${0,1,2,3,4}:(+,\ast)$ (mod 5)   是不是 Field?<br>| + | 0 | 1 | 2 | 3 | 4 |<br>|—|—|—|—|—|—|<br>| 0 | 0 | 1 | 2 | 3 | 1 |<br>| 1 | 1 | 2 | 3 | 0 | 2 |<br>| 2 | 2 | 3 | 0 | 1 | 3 |<br>| 3 | 3 | 4 | 1 | 2 | 4 |<br>| 4 | 4 | 0 | 1 | 2 | 3 |</p>
+<table>
+<thead>
+<tr>
+<th>$\ast$</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>4</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>兩個都是 abelian group $\Rightarrow$ Field</p>
+</blockquote>
+<hr>
+<h1 id="Galois_Field">Galois Field</h1><p>GF(p) is the set if integers $\mathbb{Z}= {0,1,…,p-1}$ with the arithmetic operations modulo a prime p<br>$(\mathbb{Z}_p,+,\ast)$ 形成一個 Galois Field</p>
+<p>如果 p 是質數，則 $\mathbb{Z}_p$ is a field.  $\mathbb{Z}_p = GF(P)$<br>如果 n 不是質數，則 $\mathbb{Z}_n$ 不是一個 Field, $\mathbb{Z}_n$ 是 commutative ring with 1 (有乘法 Identity，但有element沒有乘法反元素）</p>
+<hr>
+<h1 id="Multiplicative_Inverse_in_$\mathbb{Z}_p$_with_Extended_Euclid’s_Algorithm">Multiplicative Inverse in $\mathbb{Z}_p$ with Extended Euclid’s Algorithm</h1><blockquote>
+<p><strong>Example</strong><br>Find the mult Reverse of 337 in $\mathbb{Z}_{1021}$<br>先使用 Euclid’s Algorithm<br>1021 - 3<em>337 = 10<br>337 - 33</em>10 = 7<br>10 - 1<em>7 = 3<br>7 - 2</em>3 = 1<br>如果做到最後沒有1時，表示不互質，不能使用這個方法<br>接下來使用 extended Euclid’s algorithm<br>1<br>=1<em>7+3</em>(-2)<br>=1<em>7+(-2)(10-1</em>7)<br>=(-2)10+3(7)<br>=(-2)10+3(337-33<em>10)<br>=(3)337+(-101)10<br>=3(337)+(-101)(1021-3</em>337)<br>=(-101)1021+(306)337<br>337-1=306 mod 1021, multiplicative inverse.<br>$337^{-1} = 306$</p>
+</blockquote>
+<hr>
+<h1 id="Extended_Euclid’s_Algorithn">Extended Euclid’s Algorithn</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Precondition: a,b &gt; 0</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (b != <span class="number">0</span>)&#123;</span><br><span class="line">		t = b;</span><br><span class="line">		b = a % b;</span><br><span class="line">		a = t;</span><br><span class="line">		<span class="keyword">return</span> a ;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Remark">Remark</h1><p>If n is not prime, then Zn is not a field.<br>Given $x \in \mathbb{Z}_n$ , $x^{-1}$ may not exist.<br>只有 x 和 n 互質時，$x^{-1}$ 才會成立。</p>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/cryptography/" rel="tag">#cryptography</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/27/here/" rel="next" title="你在這裡">
-                <i class="fa fa-chevron-left"></i> 你在這裡
+              <a href="/2016/02/22/this-world/" rel="next" title="this world">
+                <i class="fa fa-chevron-left"></i> this world
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/02/22/this-world/" rel="prev" title="this world">
-                this world <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/20/2016-03-20-finite-field-2/" rel="prev" title="Finite Field - Polynomial Arithmetic">
+                Finite Field - Polynomial Arithmetic <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -434,7 +771,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Modular_Arithmetic"><span class="nav-number">1.</span> <span class="nav-text">Modular Arithmetic</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD_and_Euclid’s_Algorithm"><span class="nav-number">2.</span> <span class="nav-text">GCD and Euclid’s Algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Group"><span class="nav-number">3.</span> <span class="nav-text">Group</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ring"><span class="nav-number">4.</span> <span class="nav-text">Ring</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Field"><span class="nav-number">5.</span> <span class="nav-text">Field</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Galois_Field"><span class="nav-number">6.</span> <span class="nav-text">Galois Field</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Multiplicative_Inverse_in_$\mathbb{Z}_p$_with_Extended_Euclid’s_Algorithm"><span class="nav-number">7.</span> <span class="nav-text">Multiplicative Inverse in $\mathbb{Z}_p$ with Extended Euclid’s Algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Extended_Euclid’s_Algorithn"><span class="nav-number">8.</span> <span class="nav-text">Extended Euclid’s Algorithn</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Remark"><span class="nav-number">9.</span> <span class="nav-text">Remark</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -494,9 +831,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'vicky-sunshine';
-      var disqus_identifier = '2016/02/18/花/';
-      var disqus_title = '花';
-      var disqus_url = 'http://vicky-sunshine.github.io/2016/02/18/花/';
+      var disqus_identifier = '2016/03/20/2016-03-20-finite-field-1/';
+      var disqus_title = 'Finite Field - Group, Ring and Field';
+      var disqus_url = 'http://vicky-sunshine.github.io/2016/03/20/2016-03-20-finite-field-1/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

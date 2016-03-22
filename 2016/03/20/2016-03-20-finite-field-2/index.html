@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="cryptography," />
 
 
 
@@ -51,22 +51,20 @@
 
 
 
-<meta name="description" content="「我正在忙著流失水分，可以幫我澆一下花嗎？」
-
-「什麼花啊？」「我啊。」">
+<meta name="description" content="IntroductionConsider a polynomial,$f(x) = anx^{n} + a{n-1}x^{n-1} + … + a_1x^ + a0 = \sum{i=0}^n a_ix^i$
+如果所有的係數 $a_0, …, a_n \in R $ ，$R$ is a Ring 則我們可以寫成 $R[x]$如果多項式可以形成一個Ring，則會被叫做 Polynomial Ring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="花">
-<meta property="og:url" content="http://vicky-sunshine.github.io/2016/02/18/花/index.html">
+<meta property="og:title" content="Finite Field - Polynomial Arithmetic">
+<meta property="og:url" content="http://vicky-sunshine.github.io/2016/03/20/2016-03-20-finite-field-2/index.html">
 <meta property="og:site_name" content="Little Sunshine">
-<meta property="og:description" content="「我正在忙著流失水分，可以幫我澆一下花嗎？」
-
-「什麼花啊？」「我啊。」">
-<meta property="og:updated_time" content="2016-02-17T17:02:13.000Z">
+<meta property="og:description" content="IntroductionConsider a polynomial,$f(x) = anx^{n} + a{n-1}x^{n-1} + … + a_1x^ + a0 = \sum{i=0}^n a_ix^i$
+如果所有的係數 $a_0, …, a_n \in R $ ，$R$ is a Ring 則我們可以寫成 $R[x]$如果多項式可以形成一個Ring，則會被叫做 Polynomial Ring">
+<meta property="og:image" content="http://vicky-sunshine.github.io/2016/03/20/2016-03-20-finite-field-2/polynomial_modulo.png">
+<meta property="og:updated_time" content="2016-03-22T08:27:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="花">
-<meta name="twitter:description" content="「我正在忙著流失水分，可以幫我澆一下花嗎？」
-
-「什麼花啊？」「我啊。」">
+<meta name="twitter:title" content="Finite Field - Polynomial Arithmetic">
+<meta name="twitter:description" content="IntroductionConsider a polynomial,$f(x) = anx^{n} + a{n-1}x^{n-1} + … + a_1x^ + a0 = \sum{i=0}^n a_ix^i$
+如果所有的係數 $a_0, …, a_n \in R $ ，$R$ is a Ring 則我們可以寫成 $R[x]$如果多項式可以形成一個Ring，則會被叫做 Polynomial Ring">
 
 
 
@@ -78,7 +76,7 @@
   };
 </script>
 
-  <title> 花 | Little Sunshine </title>
+  <title> Finite Field - Polynomial Arithmetic | Little Sunshine </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
@@ -227,7 +225,7 @@
             
             
               
-                花
+                Finite Field - Polynomial Arithmetic
               
             
           </h1>
@@ -236,8 +234,8 @@
         <div class="post-meta">
           <span class="post-time">
             發表於
-            <time itemprop="dateCreated" datetime="2016-02-18T00:57:08+08:00" content="2016-02-18">
-              2016-02-18
+            <time itemprop="dateCreated" datetime="2016-03-20T10:34:02+08:00" content="2016-03-20">
+              2016-03-20
             </time>
           </span>
 
@@ -246,8 +244,8 @@
               &nbsp; | &nbsp; 分類於
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index">
-                    <span itemprop="name">life</span>
+                  <a href="/categories/study/" itemprop="url" rel="index">
+                    <span itemprop="name">study</span>
                   </a>
                 </span>
 
@@ -262,8 +260,8 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/02/18/花/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/02/18/花/" itemprop="commentsCount"></span>
+              <a href="/2016/03/20/2016-03-20-finite-field-2/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/03/20/2016-03-20-finite-field-2/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -282,31 +280,159 @@
       
 
       
-        <span itemprop="articleBody"><p>「我正在忙著流失水分，可以幫我澆一下花嗎？」</p>
+        <span itemprop="articleBody"><h1 id="Introduction">Introduction</h1><p>Consider a polynomial,<br>$f(x) = a<em>nx^{n} + a</em>{n-1}x^{n-1} + … + a_1x^ + a<em>0 = \sum</em>{i=0}^n a_ix^i$</p>
+<p>如果所有的係數 $a_0, …, a_n \in R $ ，$R$ is a Ring 則我們可以寫成 $R[x]$<br>如果多項式可以形成一個Ring，則會被叫做 Polynomial Ring</p>
+<blockquote>
+<p><strong>Example 1:</strong><br>Is $\lbrace f \in R[x] | deg(f) \leq n \rbrace $ is a ring?<br><strong>Solution</strong><br>不是。<br>要判斷這個 Set 是不是一個 Ring，其成員必須要符合 <a href="##Rings">Ring</a> 的定義 取兩個 degree 為 n     的多項式相乘，兩者的degree會超過 n，不符合 Closure 的定義，所以 $\lbrace f \in R[x] | deg(f) \leq n \rbrace $  不是一個 Ring。</p>
+<p><strong>Example 2</strong><br>If $F$ is a Field. Is $F[x]$ is a field?<br><strong>Solution</strong><br>不是。<br>以實數 $\mathbb {R}$ 來當例子 ( $\mathbb{R}$ 是一個 Field)。<br>假設有一個多項式的屬於 $ \mathbb{R}[x]$，也就是係數都是實數，我們取 $x+1$，而他的 multiple inverse $ \frac{1}{x+1}$ 不屬於$\mathbb{R}[x]$ ，也就是 $x+1$ 在 $ \mathbb{R}[x]$ 裡不存在有一個 multiple inverse 使得其相乘等於1，所以 $\mathbb{R}[x]$ 不是一個 Field。<br>這也推翻了題目的敘述：$F$  is a Field. 則 $F[x]$ is a field 。</p>
+</blockquote>
 <hr>
-<p>「什麼花啊？」<br>「我啊。」</p>
+<h1 id="Ordinary_Polynomial_Arithmetic">Ordinary Polynomial Arithmetic</h1><p>以 $\mathbb{Z}[x]$ 來當例子，也就是多項式的係數都是整數。<br>整數的相加和相乘的結果都還是整數。<br>隨便舉例來當例子（不是驗證）</p>
+<blockquote>
+<p><strong>Example</strong><br>Let $f(x)=x^3+x^2+2 \in \mathbb{Z}$  and  $g(x) = x^2 - x +1 \in \mathbb{Z}$</p>
+<ul>
+<li>$f(x) + g(x) = x^3 + 2x^2 - x +3$</li>
+<li>$f(x) * g(x) = x^3 + 3x^2 - 2x +2$</li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="Polynomial_Arithmetic_with_Modulo_Coefficients">Polynomial Arithmetic with Modulo Coefficients</h1><p>以 $\mathbb{Z}_2[x]$ 來當例子。</p>
+<blockquote>
+<p><strong>Example</strong><br>先回顧 $\mathbb{Z}_2$ 的arithmetic 運算：</p>
+<table>
+<thead>
+<tr>
+<th>+</th>
+<th>0</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>$\ast $</th>
+<th>0</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Let $f(x)=x^3+x^2$  and  $g(x) = x^2 + x +1$</p>
+<ul>
+<li>$f(x) + g(x) = x^3 + x + 1$</li>
+<li>$f(x) * g(x) = x^5 + x^2 $</li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="Modular_Polynomial_Arithmetic_(Quotient_Ring)">Modular Polynomial Arithmetic (Quotient Ring)</h1><p>前面在Field的時候我們已經知道，當 $ p \in \mathbb{Z}$ 是質數，則 $\mathbb{Z}_n$ 也會形成一個 Field。</p>
+<p>有沒有類似質數多項式這種概念？<br>那我們可不可以也 modulo 一個多項式呢？</p>
+<p>質數的定義是不能在分解成更小的數字相乘，在多項式中我們則稱為 <strong>irreducible</strong>，也就是不可分解的，除了1和自己以外不能被整除，而看起來相同的多項式，係數被定義在不同的 Field，判定也會不一樣。</p>
+<blockquote>
+<p><strong>Exapmle 1</strong><br>$f(x)=x^2 +1  \in \mathbb{R}[x]$. Is $f(x)$ irreducible?<br><strong>Solution</strong><br>是 irreducible。因為無法拆解成更小的多項式相乘。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Exapmle 2</strong><br>$f(x)=x^2 +1  \in \mathbb{C}[x]$. Is $f(x)$ irreducible?<br><strong>Solution</strong><br>$ f(x) = (x+i)(x-i)$，不是irreducible</p>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Exapmle 3</strong><br>$f(x)=x^2 +1  \in \mathbb{Z}_2[x]$. Is $f(x)$ irreducible?<br><strong>Solution</strong><br>$f(x) = (x+1)(x+1) $，不是irreducible<br>ps: 在 $\mathbb{Z}_2$中，1+1=0</p>
+</blockquote>
+<p>modulo irreducible Polynomial 跟 modulo 一個質數的性質一樣：<br>If $p(x) \in R[x]$ (R is a Ring) is irreducible, 則 $R[x]/p(x)$ is a Field，我們也稱之為 Quotient Ring</p>
+<hr>
+<h1 id="Finite_Field_Construction">Finite Field Construction</h1><p>$GF(p^n) = F(p)/p(x) $,  where<br>$GF(p) = \mathbb{Z}_p = \lbrace 0, …,p-1 \rbrace$ with + * operation, and<br>$p(x)$ is irreducible and in $ \mathbb{Z}_n$ of degree n</p>
+<p>怎麼去建構一個$GF(p^n)$</p>
+<ol>
+<li>Find an irreducible polynomial $p(x) \in \mathbb{Z}_p[x]$ of degree n</li>
+<li>$GF(p^n)$ can be constructed as $\mathbb{Z}_p[x]/p(x) $  ( $\mathbb{Z}_p[x] $ mod $p(x) $)</li>
+</ol>
+<p>對於每一個n，其實都會有一個p(x)存在，老師在這邊沒證明只有略過，然後以p = 2，n = 3 來舉例，也就是 $GF(8)$</p>
+<p>下面會發摟這個步驟來建構一個 $GF(8)$<br>$GF(8) = GF(2^3) = \mathbb{Z}_2[x]/ p(x)$<br>1.Find an irreducible polynomial $p(x) \in \mathbb{Z}_2[x]$  of degree 3<br>以下是比較有可能的多項式</p>
+<table>
+<thead>
+<tr>
+<th>result</th>
+<th>Polynomial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X</td>
+<td>$x^3 = x(x^2)$</td>
+</tr>
+<tr>
+<td>X</td>
+<td>$x^3+1 = (x+1)(x^2+x+1) $</td>
+</tr>
+<tr>
+<td>O</td>
+<td>$x^3+ x+1$</td>
+</tr>
+<tr>
+<td>O</td>
+<td>$x^3+ x^2+1$</td>
+</tr>
+<tr>
+<td>X</td>
+<td>$x^3+ x^2 + x +1 = (x+1)(x^2+1)$</td>
+</tr>
+</tbody>
+</table>
+<p>挑小的 $x^3+ x+1$ 作為p(x)，之後計算可以用 1011 代替（在這邊千萬不要把1011當成數字來計算）</p>
+<p>2.以第一步取得的 p(x) 來計算 modulo，就可以得到 $GF(8)$</p>
+<img src="/2016/03/20/2016-03-20-finite-field-2/polynomial_modulo.png" alt="polynomial_modulo.png" title="">
+<hr>
+<blockquote>
+<p><strong>Example</strong><br>請找 $(x^2+x+1)的乘法反元素$<br><strong>Solution</strong><br>求$(x^2+x+1)^{-1}$ mod $x^3+x+1$<br>在binary運算之中，其實＋等於 －<br>我們可以利用 Exended Euclid’s Algorithm<br>1011 = 11<em>111+10<br>111 = 10</em>11+1<br>1<br>= 111 +(-) 10<em>11<br>= 111 + 11 (1011 +(-) 11</em>111)<br>= 111 + 11<em>11</em>111 + 11<em>1011<br>= (11</em>11+1)<em>111 + 11</em>1011<br>= 100<em>111 + 11</em>1011<br>111* 100 $\equiv$ 1 mod 1011<br>$(111)^{-1}$ = 100 = $x^2$</p>
+</blockquote>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/cryptography/" rel="tag">#cryptography</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/27/here/" rel="next" title="你在這裡">
-                <i class="fa fa-chevron-left"></i> 你在這裡
+              <a href="/2016/03/20/2016-03-20-finite-field-1/" rel="next" title="Finite Field - Group, Ring and Field">
+                <i class="fa fa-chevron-left"></i> Finite Field - Group, Ring and Field
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/02/22/this-world/" rel="prev" title="this world">
-                this world <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -434,7 +560,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ordinary_Polynomial_Arithmetic"><span class="nav-number">2.</span> <span class="nav-text">Ordinary Polynomial Arithmetic</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Polynomial_Arithmetic_with_Modulo_Coefficients"><span class="nav-number">3.</span> <span class="nav-text">Polynomial Arithmetic with Modulo Coefficients</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Modular_Polynomial_Arithmetic_(Quotient_Ring)"><span class="nav-number">4.</span> <span class="nav-text">Modular Polynomial Arithmetic (Quotient Ring)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Finite_Field_Construction"><span class="nav-number">5.</span> <span class="nav-text">Finite Field Construction</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -494,9 +620,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'vicky-sunshine';
-      var disqus_identifier = '2016/02/18/花/';
-      var disqus_title = '花';
-      var disqus_url = 'http://vicky-sunshine.github.io/2016/02/18/花/';
+      var disqus_identifier = '2016/03/20/2016-03-20-finite-field-2/';
+      var disqus_title = 'Finite Field - Polynomial Arithmetic';
+      var disqus_url = 'http://vicky-sunshine.github.io/2016/03/20/2016-03-20-finite-field-2/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
