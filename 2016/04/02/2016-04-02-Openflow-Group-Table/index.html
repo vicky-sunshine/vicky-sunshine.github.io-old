@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="OpenFlow,SDN," />
 
 
 
@@ -51,16 +51,40 @@
 
 
 
-<meta name="description" content="你結束了與她的談話，將她離去的背影儲存在腦海哩，並給自己打了個分數：五十七分，起頭的太突兀，話題不夠熱烈，結束的太草率，不及格！還是會緊張，還不夠遊刃有餘，你用衣擺擦了擦手心的汗，拿起了筆記本記錄下她剛剛的細微表情，轉化成數據並換算成紫心藍心綠心的各種等級，離紅心還很遙遠，你用筆戳著臉頰這麼想。">
+<meta name="description" content="看了蠻久，才懂 Group Table 在做什麼，其中的精華在於 Action Bucket 的應用
+Group Table Entry
+Group ID
+Group Type：Group 的類型，也就是如何去使用這個 Group 裡的 Action Buckets
+Counters：紀錄有多少 packet 被這個 Group 處理
+Action Buckets：an order list of">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Game Walkthrough">
-<meta property="og:url" content="http://vicky-sunshine.github.io/2015/12/11/Game-Walkthrough/index.html">
+<meta property="og:title" content="Openflow Group Table">
+<meta property="og:url" content="http://vicky-sunshine.github.io/2016/04/02/2016-04-02-Openflow-Group-Table/index.html">
 <meta property="og:site_name" content="Little Sunshine">
-<meta property="og:description" content="你結束了與她的談話，將她離去的背影儲存在腦海哩，並給自己打了個分數：五十七分，起頭的太突兀，話題不夠熱烈，結束的太草率，不及格！還是會緊張，還不夠遊刃有餘，你用衣擺擦了擦手心的汗，拿起了筆記本記錄下她剛剛的細微表情，轉化成數據並換算成紫心藍心綠心的各種等級，離紅心還很遙遠，你用筆戳著臉頰這麼想。">
-<meta property="og:updated_time" content="2015-12-11T06:57:22.000Z">
+<meta property="og:description" content="看了蠻久，才懂 Group Table 在做什麼，其中的精華在於 Action Bucket 的應用
+Group Table Entry
+Group ID
+Group Type：Group 的類型，也就是如何去使用這個 Group 裡的 Action Buckets
+Counters：紀錄有多少 packet 被這個 Group 處理
+Action Buckets：an order list of">
+<meta property="og:image" content="http://vicky-sunshine.github.io/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets.png">
+<meta property="og:image" content="http://vicky-sunshine.github.io/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets_all.png">
+<meta property="og:image" content="http://vicky-sunshine.github.io/2016/04/02/2016-04-02-Openflow-Group-Table/switch_all.png">
+<meta property="og:image" content="http://vicky-sunshine.github.io/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets_all2.png">
+<meta property="og:image" content="http://vicky-sunshine.github.io/2016/04/02/2016-04-02-Openflow-Group-Table/switch_all2.png">
+<meta property="og:image" content="http://vicky-sunshine.github.io/2016/04/02/2016-04-02-Openflow-Group-Table/switch_select.png">
+<meta property="og:image" content="http://vicky-sunshine.github.io/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets_failover.png">
+<meta property="og:image" content="http://vicky-sunshine.github.io/2016/04/02/2016-04-02-Openflow-Group-Table/switch_failover.png">
+<meta property="og:image" content="http://vicky-sunshine.github.io/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets_indirect.png">
+<meta property="og:updated_time" content="2016-04-01T18:19:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Game Walkthrough">
-<meta name="twitter:description" content="你結束了與她的談話，將她離去的背影儲存在腦海哩，並給自己打了個分數：五十七分，起頭的太突兀，話題不夠熱烈，結束的太草率，不及格！還是會緊張，還不夠遊刃有餘，你用衣擺擦了擦手心的汗，拿起了筆記本記錄下她剛剛的細微表情，轉化成數據並換算成紫心藍心綠心的各種等級，離紅心還很遙遠，你用筆戳著臉頰這麼想。">
+<meta name="twitter:title" content="Openflow Group Table">
+<meta name="twitter:description" content="看了蠻久，才懂 Group Table 在做什麼，其中的精華在於 Action Bucket 的應用
+Group Table Entry
+Group ID
+Group Type：Group 的類型，也就是如何去使用這個 Group 裡的 Action Buckets
+Counters：紀錄有多少 packet 被這個 Group 處理
+Action Buckets：an order list of">
 
 
 
@@ -72,7 +96,7 @@
   };
 </script>
 
-  <title> Game Walkthrough | Little Sunshine </title>
+  <title> Openflow Group Table | Little Sunshine </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
@@ -221,7 +245,7 @@
             
             
               
-                Game Walkthrough
+                Openflow Group Table
               
             
           </h1>
@@ -230,8 +254,8 @@
         <div class="post-meta">
           <span class="post-time">
             發表於
-            <time itemprop="dateCreated" datetime="2015-12-11T14:37:01+08:00" content="2015-12-11">
-              2015-12-11
+            <time itemprop="dateCreated" datetime="2016-04-02T02:12:41+08:00" content="2016-04-02">
+              2016-04-02
             </time>
           </span>
 
@@ -240,8 +264,8 @@
               &nbsp; | &nbsp; 分類於
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/writing/" itemprop="url" rel="index">
-                    <span itemprop="name">writing</span>
+                  <a href="/categories/Study/" itemprop="url" rel="index">
+                    <span itemprop="name">Study</span>
                   </a>
                 </span>
 
@@ -256,8 +280,8 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/12/11/Game-Walkthrough/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/11/Game-Walkthrough/" itemprop="commentsCount"></span>
+              <a href="/2016/04/02/2016-04-02-Openflow-Group-Table/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/02/2016-04-02-Openflow-Group-Table/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -276,51 +300,108 @@
       
 
       
-        <span itemprop="articleBody"><p>你結束了與她的談話，將她離去的背影儲存在腦海哩，並給自己打了個分數：五十七分，起頭的太突兀，話題不夠熱烈，結束的太草率，不及格！還是會緊張，還不夠遊刃有餘，你用衣擺擦了擦手心的汗，拿起了筆記本記錄下她剛剛的細微表情，轉化成數據並換算成紫心藍心綠心的各種等級，離紅心還很遙遠，你用筆戳著臉頰這麼想。<br><a id="more"></a><br>而是什麼讓你開始並耽溺於這種你來我往的遊戲，整個世界彷彿是個巨大的程式所建構出來的複雜場景，每個人都是自己的主人翁走自己的主線劇情，支線和支線不斷往外無限延伸互相交叉纏繞，譜成一個緻密的人情網路想抽身卻也剪不斷理不清，端看你如何做決定。</p>
-<p>我打開了模擬器按下load鍵，想見那朝思暮想的人影，早上八點卡蓮將會坐在雜貨店前，我看了總是在她身邊打轉的蒼蠅力克一眼然後不理會，卡蓮還是一臉冷漠，可是胸前紫色的心已透露出對我有些好感，她開了包裝，意料之內驚喜又帶點含羞帶怯的跟我道聲謝謝，葡萄酒可是會加好感度五百，何況又有包裝再加一百。</p>
-<p>而一次又一次的事件與對話就是在做抉擇，就像你剛進入遊戲沒多久（你翻開了存檔紀錄），當你正在搬著重物走在路上的時候，突然下起了大雨，此時事件發生，有個女孩經過看你一身狼狽，於是問你要不要共撐一把傘？</p>
-<blockquote>
-<p>選項一：不用了！我自己可以處理。<br>選項二：干你屁事！<br>選項三：那就麻煩妳了，謝謝。</p>
+        <span itemprop="articleBody"><p>看了蠻久，才懂 Group Table 在做什麼，其中的精華在於 Action Bucket 的應用</p>
+<h1 id="Group_Table_Entry">Group Table Entry</h1><ul>
+<li>Group ID</li>
+<li>Group Type：Group 的類型，也就是如何去使用這個 Group 裡的 Action Buckets</li>
+<li>Counters：紀錄有多少 packet 被這個 Group 處理</li>
+<li>Action Buckets：an <strong>order list</strong> of action buckets</li>
+</ul>
+<p>由上面可以得知，Action Buckets 是一連串並且有順序的 Action bucket 所組成</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets.png" alt="action_buckets.png" title="">
+<p>packet 基本上會根據 Group Type 而對 bucket 有不同的選擇</p>
+<h1 id="Group_Type">Group Type</h1><p>Group Type 有四種：All、Select、Indirect 和 Failover</p>
+<p>接下來以例子來說明這四個的不同：假設現在一台 Switch 有 4 個 port，然後 Group Table 中有一個 Group 如下</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets_all.png" alt="action_buckets_all.png" title="">
+<h2 id="All_(Require)">All (Require)</h2><blockquote>
+<p>Execute all buckets in the group. This group is used for multicast or broadcast forwarding. The packet is effectively cloned for each bucket; one packet is processed for each bucket ofthe group.</p>
 </blockquote>
-<p>那女孩伸出手的畫面與某個身影重疊，你望了她幾眼，也不想跟這場大雨過不去，於是你選了三，和她一路肩並肩走著，本來是尷尬的沉默，但是後來你發覺她會因為你講的冷笑話而笑的很開心，笑的時候手抖了厲害拿不穩雨傘，搖搖晃晃還不停戳到你的頭，結果你到達目的地時全身濕冷，但心似乎熱了起來。</p>
-<p>我想起還未熟悉牧場經營時，在鎮上不知所措的閑晃進雜貨店，是卡蓮，是她主動問我有沒有困難，並送我一包牧草種子。</p>
-<p>於是你開始日復一日的計算，一如用當初記錄卡蓮的出沒地點與時間，你不斷按下遊戲裡的save/load鍵不斷更新腦中的資訊，嘗試在各個時間到那路口看她會不會出現，計算要多久她才會從她家門口到上班地點，計算她幾點起床，幾點出門，幾點關燈睡覺，你知道她叫亭亭，你知道她騎車總是習慣帶個口罩，你掌握了她的行程，接下來就只是「巧遇」，有計畫的巧遇會引發更多的對話事件。</p>
-<p>這是你與選項之間的戰爭。</p>
-<p>你步步為營你計算仔細，她在早上七點五十五分前會走到那個樓梯，她週一的課表是化數體生英英數物，她習慣性的會在十二點六分的時候到福利社買午餐，喜歡吃沙茶燴飯加一瓶綠茶，你計算出她會在哪一天當值日生，計算她走路的速度，嘴角上揚的角度……</p>
+<p>如果 Group Type 是 All 的話，這個 packet 會執行這個 Group 裡所有的 Action bucket，以這個例子來說，packet 被複製成四份送往四個 port，達到 broadcast/flooding的效果</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/switch_all.png" alt="switch_all.png" title="">
 <blockquote>
-<p>Skip→　Skip→　Skip→</p>
+<p>If a bucket directs a packet explicitly out the ingress port, this packet clone is dropped. If the controller writer wants to forward out the ingress port, the group should include an extra bucketwhich includes an output action to the OFPP_IN_PORT reserved port.<br>要注意的是 packet 如果送往 In_Port 的話，packet 會被自動 drop 掉</p>
 </blockquote>
-<p>已經玩了好多次、看了太多重複的劇情我開始感到厭煩。</p>
-<blockquote>
-<p>…<br>..<br>.<br>Skkkkkkkkkiiip 直接結局劇情</p>
+<p>如果需要讓封包也送往 In_Port的話，必須增加一個 Action Bucket</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets_all2.png" alt="action_buckets_all2.png" title="">
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/switch_all2.png" alt="switch_all2.png" title="">
+<h2 id="Select_(Optional)">Select (Optional)</h2><blockquote>
+<p>Execute one bucket in the group. Packets are processed by a single bucket in thegroup, based on a switch-computed selection algorithm (e.g. hash on some user-configured tuple orsimple round robin).</p>
 </blockquote>
-<p>於是你毫無反應的茫然看著她，甚至只看得到她的嘴一張一闔，你們之間彷彿是真空般寂然無聲，而當她對你不知道大吼了什麼之後，轉身用力的甩上了大門，在昏暗得只有一盞暖黃色小燈照著的客廳中徒留下你，而你不知道為什麼？她為什麼這麼生氣呢？為什麼要離開呢？</p>
-<p>然後你想起了你並不是一個人，你打開了遊戲，看著不知道這是第幾次和卡蓮結婚，你和卡蓮一臉幸福的走向紅色的地毯，卻覺得有些煩躁，所以你按了select……</p>
-<p>你突然發現遊戲不能重新開始。</p>
-<hr>
-<p>TRAGIC BOY<br><a href="http://www.youtube.com/watch?v=9qng835--K4" target="_blank" rel="external">http://www.youtube.com/watch?v=9qng835--K4</a></p>
+<p>如果 Group Type 是 Select 的話，Switch 會自己透過演算法選擇出一個 Action Bucket 來執行</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/switch_select.png" alt="switch_select.png" title="">
+<p>以這個例子來說，switch會隨機找一個port來送packet出去，所以可以達到 Load Balance的效果</p>
+<h2 id="Fast_Failover_(Optional)">Fast Failover (Optional)</h2><blockquote>
+<p>Each action bucket is associated with a specificport and/or group that controls its liveness. The buckets are evaluated in the order defined by thegroup, and the first bucket which is associated with a live port/group is selected. This group typeenables the switch to change forwarding without requiring a round trip to the controller. If no bucketsare live, packets are dropped.</p>
+</blockquote>
+<p>Group 也可以拿來處理 Failover，如果每個action bucket都跟一個port有關，當switch知道選擇的 action bucket 連到的 port 不能使用的時候，他會直接往下一個 action bucket 來執行，以這個例子來說，假設選到往 port1 的 action bucket，發現 port 1 不能用，所以他會直接往下個看，也就是直接往port 2 送，這樣可以直接透過 switch 來處理，避免失敗了還要上去問 controller 花費 round trip 的時間</p>
+<p>如果所有 Action Bucket 都失敗的話，則封包會被 drop 掉</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets_failover.png" alt="action_buckets_failover.png" title="">
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/switch_failover.png" alt="switch_failover.png" title="">
+<h2 id="Indirect_(Require)">Indirect (Require)</h2><p>在這個類型當中，一個Group 只能有一個 action bucket，也就是說這個 Type 沒有在選擇 bucket的問題，他主要是用在多個 Flow 可能會有一樣的行為時，可以統一一起處理。</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets_indirect.png" alt="action_buckets_indirect.png" title="">
+<p>以上面的例子來說，Flow 1,3,4都是屬於Group1，也就是要 forward 到 port 2，如果port 2 壞掉，要一個一個改 Instruction 很麻煩，所以我們會將它們設成同一個 Group，然後直接去改 Group 的 Action 就好，這樣比較方便</p>
+<h2 id="Group_Table_整理">Group Table 整理</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">Group Type</th>
+<th style="text-align:center">spec</th>
+<th style="text-align:center">Action Bucket 數量</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">All</td>
+<td style="text-align:center">require</td>
+<td style="text-align:center">多</td>
+<td style="text-align:center">Broadcast/Flooding</td>
+</tr>
+<tr>
+<td style="text-align:center">Select</td>
+<td style="text-align:center">optional</td>
+<td style="text-align:center">多</td>
+<td style="text-align:center">Load Balancing</td>
+</tr>
+<tr>
+<td style="text-align:center">Fast Failover</td>
+<td style="text-align:center">optional</td>
+<td style="text-align:center">多</td>
+<td style="text-align:center">failover handling/ reliability</td>
+</tr>
+<tr>
+<td style="text-align:center">Indirect</td>
+<td style="text-align:center">require</td>
+<td style="text-align:center">一個</td>
+<td style="text-align:center">more efficient convergence</td>
+</tr>
+</tbody>
+</table>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/OpenFlow/" rel="tag">#OpenFlow</a>
+          
+            <a href="/tags/SDN/" rel="tag">#SDN</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/12/11/營養缺乏/" rel="next" title="營養缺乏">
-                <i class="fa fa-chevron-left"></i> 營養缺乏
+              <a href="/2016/03/20/2016-03-20-finite-field-2/" rel="next" title="Finite Field - Polynomial Arithmetic">
+                <i class="fa fa-chevron-left"></i> Finite Field - Polynomial Arithmetic
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/13/ocean/" rel="prev" title="海洋">
-                海洋 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -448,7 +529,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Group_Table_Entry"><span class="nav-number">1.</span> <span class="nav-text">Group Table Entry</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Group_Type"><span class="nav-number">2.</span> <span class="nav-text">Group Type</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#All_(Require)"><span class="nav-number">2.1.</span> <span class="nav-text">All (Require)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Select_(Optional)"><span class="nav-number">2.2.</span> <span class="nav-text">Select (Optional)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fast_Failover_(Optional)"><span class="nav-number">2.3.</span> <span class="nav-text">Fast Failover (Optional)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Indirect_(Require)"><span class="nav-number">2.4.</span> <span class="nav-text">Indirect (Require)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Group_Table_整理"><span class="nav-number">2.5.</span> <span class="nav-text">Group Table 整理</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -508,9 +589,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'vicky-sunshine';
-      var disqus_identifier = '2015/12/11/Game-Walkthrough/';
-      var disqus_title = 'Game Walkthrough';
-      var disqus_url = 'http://vicky-sunshine.github.io/2015/12/11/Game-Walkthrough/';
+      var disqus_identifier = '2016/04/02/2016-04-02-Openflow-Group-Table/';
+      var disqus_title = 'Openflow Group Table';
+      var disqus_url = 'http://vicky-sunshine.github.io/2016/04/02/2016-04-02-Openflow-Group-Table/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

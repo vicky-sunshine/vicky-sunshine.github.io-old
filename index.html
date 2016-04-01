@@ -238,6 +238,184 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/02/2016-04-02-Openflow-Group-Table/" itemprop="url">
+                  Openflow Group Table
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2016-04-02T02:12:41+08:00" content="2016-04-02">
+              2016-04-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分類於
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Study/" itemprop="url" rel="index">
+                    <span itemprop="name">Study</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/04/02/2016-04-02-Openflow-Group-Table/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/02/2016-04-02-Openflow-Group-Table/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>看了蠻久，才懂 Group Table 在做什麼，其中的精華在於 Action Bucket 的應用</p>
+<h1 id="Group_Table_Entry">Group Table Entry</h1><ul>
+<li>Group ID</li>
+<li>Group Type：Group 的類型，也就是如何去使用這個 Group 裡的 Action Buckets</li>
+<li>Counters：紀錄有多少 packet 被這個 Group 處理</li>
+<li>Action Buckets：an <strong>order list</strong> of action buckets</li>
+</ul>
+<p>由上面可以得知，Action Buckets 是一連串並且有順序的 Action bucket 所組成</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets.png" alt="action_buckets.png" title="">
+<p>packet 基本上會根據 Group Type 而對 bucket 有不同的選擇</p>
+<h1 id="Group_Type">Group Type</h1><p>Group Type 有四種：All、Select、Indirect 和 Failover</p>
+<p>接下來以例子來說明這四個的不同：假設現在一台 Switch 有 4 個 port，然後 Group Table 中有一個 Group 如下</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets_all.png" alt="action_buckets_all.png" title="">
+<h2 id="All_(Require)">All (Require)</h2><blockquote>
+<p>Execute all buckets in the group. This group is used for multicast or broadcast forwarding. The packet is effectively cloned for each bucket; one packet is processed for each bucket ofthe group.</p>
+</blockquote>
+<p>如果 Group Type 是 All 的話，這個 packet 會執行這個 Group 裡所有的 Action bucket，以這個例子來說，packet 被複製成四份送往四個 port，達到 broadcast/flooding的效果</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/switch_all.png" alt="switch_all.png" title="">
+<blockquote>
+<p>If a bucket directs a packet explicitly out the ingress port, this packet clone is dropped. If the controller writer wants to forward out the ingress port, the group should include an extra bucketwhich includes an output action to the OFPP_IN_PORT reserved port.<br>要注意的是 packet 如果送往 In_Port 的話，packet 會被自動 drop 掉</p>
+</blockquote>
+<p>如果需要讓封包也送往 In_Port的話，必須增加一個 Action Bucket</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets_all2.png" alt="action_buckets_all2.png" title="">
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/switch_all2.png" alt="switch_all2.png" title="">
+<h2 id="Select_(Optional)">Select (Optional)</h2><blockquote>
+<p>Execute one bucket in the group. Packets are processed by a single bucket in thegroup, based on a switch-computed selection algorithm (e.g. hash on some user-configured tuple orsimple round robin).</p>
+</blockquote>
+<p>如果 Group Type 是 Select 的話，Switch 會自己透過演算法選擇出一個 Action Bucket 來執行</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/switch_select.png" alt="switch_select.png" title="">
+<p>以這個例子來說，switch會隨機找一個port來送packet出去，所以可以達到 Load Balance的效果</p>
+<h2 id="Fast_Failover_(Optional)">Fast Failover (Optional)</h2><blockquote>
+<p>Each action bucket is associated with a specificport and/or group that controls its liveness. The buckets are evaluated in the order defined by thegroup, and the first bucket which is associated with a live port/group is selected. This group typeenables the switch to change forwarding without requiring a round trip to the controller. If no bucketsare live, packets are dropped.</p>
+</blockquote>
+<p>Group 也可以拿來處理 Failover，如果每個action bucket都跟一個port有關，當switch知道選擇的 action bucket 連到的 port 不能使用的時候，他會直接往下一個 action bucket 來執行，以這個例子來說，假設選到往 port1 的 action bucket，發現 port 1 不能用，所以他會直接往下個看，也就是直接往port 2 送，這樣可以直接透過 switch 來處理，避免失敗了還要上去問 controller 花費 round trip 的時間</p>
+<p>如果所有 Action Bucket 都失敗的話，則封包會被 drop 掉</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets_failover.png" alt="action_buckets_failover.png" title="">
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/switch_failover.png" alt="switch_failover.png" title="">
+<h2 id="Indirect_(Require)">Indirect (Require)</h2><p>在這個類型當中，一個Group 只能有一個 action bucket，也就是說這個 Type 沒有在選擇 bucket的問題，他主要是用在多個 Flow 可能會有一樣的行為時，可以統一一起處理。</p>
+<img src="/2016/04/02/2016-04-02-Openflow-Group-Table/action_buckets_indirect.png" alt="action_buckets_indirect.png" title="">
+<p>以上面的例子來說，Flow 1,3,4都是屬於Group1，也就是要 forward 到 port 2，如果port 2 壞掉，要一個一個改 Instruction 很麻煩，所以我們會將它們設成同一個 Group，然後直接去改 Group 的 Action 就好，這樣比較方便</p>
+<h2 id="Group_Table_整理">Group Table 整理</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">Group Type</th>
+<th style="text-align:center">spec</th>
+<th style="text-align:center">Action Bucket 數量</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">All</td>
+<td style="text-align:center">require</td>
+<td style="text-align:center">多</td>
+<td style="text-align:center">Broadcast/Flooding</td>
+</tr>
+<tr>
+<td style="text-align:center">Select</td>
+<td style="text-align:center">optional</td>
+<td style="text-align:center">多</td>
+<td style="text-align:center">Load Balancing</td>
+</tr>
+<tr>
+<td style="text-align:center">Fast Failover</td>
+<td style="text-align:center">optional</td>
+<td style="text-align:center">多</td>
+<td style="text-align:center">failover handling/ reliability</td>
+</tr>
+<tr>
+<td style="text-align:center">Indirect</td>
+<td style="text-align:center">require</td>
+<td style="text-align:center">一個</td>
+<td style="text-align:center">more efficient convergence</td>
+</tr>
+</tbody>
+</table>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/20/2016-03-20-finite-field-2/" itemprop="url">
                   Finite Field - Polynomial Arithmetic
                 </a>
@@ -1607,111 +1785,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/24/2015-12-24-Christmas/" itemprop="url">
-                  Christmas
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            發表於
-            <time itemprop="dateCreated" datetime="2015-12-24T20:37:23+08:00" content="2015-12-24">
-              2015-12-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分類於
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index">
-                    <span itemprop="name">life</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2015/12/24/2015-12-24-Christmas/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/12/24/2015-12-24-Christmas/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>一直想用毬果做聖誕樹，所以這次就跑去撿個幾顆回來<br>忘記拍未加工前的照片和仕事中的過程了，只好就結果做記錄 &gt;&lt;</p>
-<img src="/2015/12/24/2015-12-24-Christmas/cutedecorate.jpg" alt="cutedecorate.jpg" title="">
-<p>前一個禮拜為大家特製了幾個吉祥物~</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/24/2015-12-24-Christmas/#more" rel="contents">
-              閱讀全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1758,21 +1831,21 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">分類</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>
