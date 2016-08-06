@@ -206,6 +206,108 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/06/js-class/" itemprop="url">
+                  五倍紅寶石 JS and Jquery 課
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2016-08-06T22:02:53+08:00" content="2016-08-06">
+              2016-08-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2016/08/06/js-class/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/08/06/js-class/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>講師： Kuro Hsu<br>課程大綱： <a href="https://5xruby.tw/talks/JS-jQuery-2016-3" target="_blank" rel="external">https://5xruby.tw/talks/JS-jQuery-2016-3</a></p>
+<p>之前寫網頁時，總是拼拼湊湊得從各個地方拾起如何去寫 Javascript，要操作 DOM 的時候，總是在 try and error 中學，在這次課程當中，重新把 JS 的概念重新梳理了一遍。</p>
+<p>最有印象的後面在講述 jQuery 動畫的時候，初學者可能會覺得 <code>slideDown()</code> 和 <code>slideUp()</code> 只是滑動方向的不同，但是其實 <code>slideDown()</code> 是顯示出現在畫面中，<code>slideUp()</code>則是隱藏，反而跟方向不太有關係，還有 HTML 當中每個元件的 class 屬性當中，前面的會被後面的覆蓋掉，假設說有個按鈕</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;btn <span class="keyword">class</span>=<span class="string">"disable"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>配合一些使用者觸發事件當中，我們可能會希望他變成可以按，此時我們不用特地去移除掉它原本的 <code>disable</code>，只要再加上 <code>enable</code> 這個 class 即可，這種特性在配合做動畫時特別好用。</p>
+<p>還有許多使用 Jquery 動畫效果細節，老師都很仔細的說明清楚，並準備很多範例 code 給我們練習，也準備了推薦書籍來鼓勵發問很多的同學，實在獲益良多。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -1634,122 +1736,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/15/gem/" itemprop="url">
-                  gem note
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            發表於
-            <time itemprop="dateCreated" datetime="2016-01-15T01:18:27+08:00" content="2016-01-15">
-              2016-01-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分類於
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/study/" itemprop="url" rel="index">
-                    <span itemprop="name">study</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2016/01/15/gem/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/15/gem/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>嘗試自己做gem，但是build完之後，會出現</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LoadError: cannot load such file -- weatherscout&#10;from /Users/Hsnl/.rvm/rubies/ruby-head/lib/ruby/site_ruby/2.3.0/rubygems/core_ext/kernel_require.rb:54:in `require&#39;</span><br></pre></td></tr></table></figure>
-<p>後來發現是因為lib底下最上層的檔案沒有跟gem的名字一樣<br>下面 <code>tree</code> 中兩個粗體字就是應該要跟gem名稱一樣</p>
-<p>.<br>├── Gemfile<br>├── Gemfile.lock<br>├── LICENSE.txt<br>├── README.md<br>├── Rakefile<br>├── bin<br>│   └── <strong>weatherscout  &lt;==</strong><br>├── lib<br>│   ├── weatherdesc<br>│   │   ├── daily_weather.rb<br>│   │   └── version.rb<br>│   └── <strong>weatherscout.rb  &lt;==</strong><br>├── spec<br>│   └── weatherdesc_spec.rb<br>└── <strong>weatherscout.gemspec &lt;==</strong></p>
-<hr>
-<p>未來想改善一下weatherscout model的部分<br>想加入weekly weather，而weekly和daily又有好多重複的部分，還沒決定這邊怎麼處理<br>但是應該都會放在同一個module裡面<br>這裡memo一下想用的寫法，將同個module的class放在不同檔案(dependency一向有點麻煩)<br><a href="http://stackoverflow.com/questions/12035057/breaking-ruby-module-across-several-files" target="_blank" rel="external">http://stackoverflow.com/questions/12035057/breaking-ruby-module-across-several-files</a></p>
-<hr>
-<p>另外version要怎麼update也另外記在這</p>
-<p>Semantic Versioning (semver.org): MAJOR.MINOR.PATCH <a href="http://semver.org" target="_blank" rel="external">http://semver.org</a><br>Increment the:</p>
-<ul>
-<li>MAJOR version when you make incompatible API changes,</li>
-<li>MINOR version when you add functionality in a backwards-compatible manner, and</li>
-<li>PATCH version when you make backwards-compatible bug fixes.</li>
-</ul>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1796,7 +1782,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
